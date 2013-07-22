@@ -1,23 +1,16 @@
-<!-- 
-/*
- * 
- *    The X Toolkit (XTK) is licensed under the MIT License:
- *      http://www.opensource.org/licenses/mit-license.php
- *
- */
--->
 
 <html>
 <head>
 <title>DICOM 3D view example</title>
 
-<script type="text/javascript" src="../lib/google-closure-library/closure/goog/base.js"></script>
-<script type="text/javascript" src="../xtk-deps.js"></script>
+<script type="text/javascript" src="X/lib/google-closure-library/closure/goog/base.js"></script>
+<script type="text/javascript" src="X/xtk-deps.js"></script>
 <script type="text/javascript">
 
   // include all used X-classes here
   // this is only required when using the xtk-deps.js file
   goog.require('X.renderer3D');
+  goog.require('X.renderer2D');
   goog.require('X.volume');
   goog.require('X.parserDCM');
 
@@ -42,5 +35,13 @@ html, body {
 </style>
 </head>
 <body>
+<div id="3d"
+  style="background-color: #000; width: 100%; height: 60%; margin-bottom: 2px;"></div>
+<div id="sliceX"
+  style="border-top: 2px solid yellow; background-color: #000; width: 32%; height: 30%; float: left;"></div>
+<div id="sliceY"
+  style="border-top: 2px solid red;background-color: #000; width: 32%; height: 30%; float: left;"></div>
+<div id="sliceZ"
+  style="border-top: 2px solid green; background-color: #000; width: 32%; height: 30%; float: left;"></div>
 </body>
 </html>

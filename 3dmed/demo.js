@@ -18,8 +18,9 @@ var _dicom = [];
 		_dicom.push(images[i]);
 	}
 
-  // create a new test_renderer
+  // create a new 3D renderer
   var r = new X.renderer3D();
+  r.container = '3d';
   r.init();
   
   // we create the X.volume container and attach all DICOM files
@@ -43,14 +44,40 @@ var _dicom = [];
   r.camera.up = [0, -1, 0];
 
   volume = v;
+
+  //
+  // create the 2D renderers
+  // .. for the X orientation
+  var sliceX = new X.renderer2D();
+  sliceX.container = 'sliceX';
+  sliceX.orientation = 'X';
+  sliceX.init();
+  // .. for Y
+  var sliceY = new X.renderer2D();
+  sliceY.container = 'sliceY';
+  sliceY.orientation = 'Y';
+  sliceY.init();
+  // .. and for Z
+  var sliceZ = new X.renderer2D();
+  sliceZ.container = 'sliceZ';
+  sliceZ.orientation = 'Z';
+  sliceZ.init();
   
-  // .. and render it
+  // render 3D view
   r.render();
   
   r.onShowtime = function() {
 
     console.log('volume:');
     console.log(v);
+
+    // render slice views
+    sliceX.add(v);
+    sliceX.render();
+    sliceY.add(v);
+    sliceY.render();
+    sliceZ.add(v);
+    sliceZ.render();
 
     //
     // The GUI panel
